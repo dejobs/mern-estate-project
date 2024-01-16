@@ -6,7 +6,9 @@ import {
   updateUserFailure,
   updateUserSuccess,
   updateUserStart,
-  signInFailure,
+  deleteUserStart,
+  deleteUserFailure,
+  deleteUserSuccess,
 } from "../redux/user/userSlice";
 import {
   getDownloadURL,
@@ -23,7 +25,7 @@ export default function Profile() {
   const [filePercent, setFilePercent] = useState(0);
   const [fileUploadError, setFileUploadError] = useState(false);
   const [formData, setFormData] = useState({});
-  const [userUpdate, setUserUpdate] = useState(false)
+  const [userUpdate, setUserUpdate] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -80,12 +82,29 @@ export default function Profile() {
         return;
       }
       dispatch(updateUserSuccess(data));
-      setUserUpdate(true)
+      setUserUpdate(true);
     } catch (error) {
-      dispatch(signInFailure(error.message));
+      dispatch(updateUserFailure(error.message));
     }
   };
 
+  const handleDeleteUser = async () => {
+    try {
+      dispatch(deleteUserStart());
+      const res = await fetch(`/api/user/delete/${currentUser._id}`, {
+        method: "DELETE",
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(deleteUserFailure(data.message));
+        return;
+      }
+      dispatch(deleteUserSuccess());
+      console.log("user deleted")
+    } catch (error) {
+      dispatch(deleteUserFailure(error.message));
+    }
+  };
 
   return (
     <div className="max-w-lg mx-auto p-3">
@@ -143,19 +162,24 @@ export default function Profile() {
           onChange={handleChange}
           className="border rounded-lg p-3 indent-3 outline-none"
         />
-        <button disabled={loading}
+        <button
+          disabled={loading}
           className="bg-slate-700 text-white rounded-lg p-3 
         uppercase hover:opacity-95 disabled:opacity-80 "
         >
-         {loading ? "loading..." :  "update"}
+          {loading ? "loading..." : "update"}
         </button>
       </form>
       <div className="flex justify-between mt-5">
-        <span className="text-red-700 cursor-point">Delete</span>
-        <span className="text-red-700 cursor-point">Sign out</span>
+        <span onClick={handleDeleteUser} className="text-red-700 cursor-pointer">
+          Delete
+        </span>
+        <span className="text-red-700 cursor-pointer">Sign out</span>
       </div>
       <p className="text-red-700 mt-5">{error && error}</p>
-      <p className="text-green-700 mt-5">{userUpdate && "User is updated successfully!"}</p>
+      <p className="text-green-700 mt-5">
+        {userUpdate && "User is updated successfully!"}
+      </p>
     </div>
   );
 }

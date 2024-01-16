@@ -34,7 +34,7 @@ function Header() {
             </li>
           </NavLink>
           <NavLink to="/profile">
-            {currentUser !== null ? (
+            {currentUser? (
               <img className="rounded-full h-7 w-7 object-cover"
               src={currentUser.avatar} alt="profile" />
             ) : (
