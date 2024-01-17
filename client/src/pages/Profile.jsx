@@ -100,7 +100,22 @@ export default function Profile() {
         return;
       }
       dispatch(deleteUserSuccess());
-      console.log("user deleted")
+      console.log("user deleted");
+    } catch (error) {
+      dispatch(deleteUserFailure(error.message));
+    }
+  };
+
+  const handleUserSignout = async () => {
+    try {
+      const res = await fetch("/api/auth/signout");
+      const data = await res.json();
+      console.log(data)
+      if (data.success === false) {
+        dispatch(deleteUserFailure(data.message));
+        return;
+      }
+      dispatch(deleteUserSuccess());
     } catch (error) {
       dispatch(deleteUserFailure(error.message));
     }
@@ -171,10 +186,18 @@ export default function Profile() {
         </button>
       </form>
       <div className="flex justify-between mt-5">
-        <span onClick={handleDeleteUser} className="text-red-700 cursor-pointer">
+        <span
+          onClick={handleDeleteUser}
+          className="text-red-700 cursor-pointer"
+        >
           Delete
         </span>
-        <span className="text-red-700 cursor-pointer">Sign out</span>
+        <span
+          onClick={handleUserSignout}
+          className="text-red-700 cursor-pointer"
+        >
+          Sign out
+        </span>
       </div>
       <p className="text-red-700 mt-5">{error && error}</p>
       <p className="text-green-700 mt-5">
