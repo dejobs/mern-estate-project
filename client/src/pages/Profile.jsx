@@ -17,6 +17,7 @@ import {
   uploadBytesResumable,
 } from "firebase/storage";
 import { app } from "../firebase";
+import { NavLink } from "react-router-dom";
 
 export default function Profile() {
   const { currentUser, loading, error } = useSelector((state) => state.user);
@@ -184,6 +185,10 @@ export default function Profile() {
         >
           {loading ? "loading..." : "update"}
         </button>
+        <NavLink to={"/create-listing"} className="bg-green-700 p-3 rounded-lg
+         text-white text-center uppercase hover:opacity-95">
+          create listing
+        </NavLink>
       </form>
       <div className="flex justify-between mt-5">
         <span
