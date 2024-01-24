@@ -9,6 +9,9 @@ import {
   deleteUserStart,
   deleteUserFailure,
   deleteUserSuccess,
+  showListingStart,
+  showListingSucsess,
+  showListingFailure,
 } from "../redux/user/userSlice";
 import {
   getDownloadURL,
@@ -17,7 +20,7 @@ import {
   uploadBytesResumable,
 } from "firebase/storage";
 import { app } from "../firebase";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export default function Profile() {
   const { currentUser, loading, error } = useSelector((state) => state.user);
@@ -27,6 +30,7 @@ export default function Profile() {
   const [fileUploadError, setFileUploadError] = useState(false);
   const [formData, setFormData] = useState({});
   const [userUpdate, setUserUpdate] = useState(false);
+  const [userListings, setUserListings] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -111,7 +115,7 @@ export default function Profile() {
     try {
       const res = await fetch("/api/auth/signout");
       const data = await res.json();
-      console.log(data)
+      console.log(data);
       if (data.success === false) {
         dispatch(deleteUserFailure(data.message));
         return;
@@ -119,6 +123,22 @@ export default function Profile() {
       dispatch(deleteUserSuccess());
     } catch (error) {
       dispatch(deleteUserFailure(error.message));
+    }
+  };
+
+  const handleShowListngs = async () => {
+    try {
+      dispatch(showListingStart());
+      const res = await fetch(`/api/user/listings/${currentUser._id}`);
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(showListingFailure());
+        return;
+      }
+      dispatch(showListingSucsess());
+      setUserListings(data);
+    } catch (error) {
+      dispatch(showListingFailure());
     }
   };
 
@@ -185,8 +205,11 @@ export default function Profile() {
         >
           {loading ? "loading..." : "update"}
         </button>
-        <NavLink to={"/create-listing"} className="bg-green-700 p-3 rounded-lg
-         text-white text-center uppercase hover:opacity-95">
+        <NavLink
+          to={"/create-listing"}
+          className="bg-green-700 p-3 rounded-lg
+         text-white text-center uppercase hover:opacity-95"
+        >
           create listing
         </NavLink>
       </form>
@@ -208,6 +231,44 @@ export default function Profile() {
       <p className="text-green-700 mt-5">
         {userUpdate && "User is updated successfully!"}
       </p>
+      <button
+        disabled={loading}
+        onClick={handleShowListngs}
+        className="text-green-700 w-full"
+      >
+        {loading ? "Loading Listings..." : "Show Listings"}
+      </button>
+      <p className="text-red-700 mt-5 ">{error && "Error showing listings"}</p>
+
+      {userListings && userListings.length > 0 && (
+        <div className="flex flex-col gap-4">
+          <h1 className="font-semibold text-center text-2xl">Your Listings</h1>
+          {userListings.map((listing) => (
+            <div
+              key={listing._id}
+              className="flex flex-row gap-3 flex-wrap justify-between items-center  p-3 border rounded-lg"
+            >
+              <NavLink to={`/listing/${listing._id}`}>
+                <img
+                  src={listing.imageUrls[0]}
+                  alt="listing cover"
+                  className="w-20 h-20 object-contain rounded-lg"
+                />
+              </NavLink>
+              <NavLink
+                to={`/listing/${listing._id}`}
+                className="text-slate-700 font-semibold truncate hover:underline"
+              >
+                <p>{listing.name}</p>
+              </NavLink>
+              <div className="flex flex-col gap-2">
+                <button className="text-red-700">Delete</button>
+                <button className="text-green-700">Edit</button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
