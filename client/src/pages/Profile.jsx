@@ -167,6 +167,8 @@ export default function Profile() {
     }
   };
 
+
+
   return (
     <div className="max-w-lg mx-auto p-3">
       <h1 className="text-3xl font-semibold text-center my-7">Profile</h1>
@@ -293,7 +295,10 @@ export default function Profile() {
                 >
                   Delete
                 </button>
-                <button className="text-green-700">Edit</button>
+                <NavLink to={`/update-listing/${listing._id}`}>
+                  <button className="text-green-700">Edit</button>
+                </NavLink>
+                
               </div>
             </div>
           ))}
@@ -303,6 +308,4 @@ export default function Profile() {
   );
 }
 
-//  const handleListingsDelete = (index) => {
-//  setUserListings(userListings.filter((_, ind) => ind !== index ))
-//}
+
