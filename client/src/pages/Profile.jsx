@@ -279,7 +279,7 @@ export default function Profile() {
                 <img
                   src={listing.imageUrls[0]}
                   alt="listing cover"
-                  className="w-20 h-20 object-contain rounded-lg"
+                  className="w-16 h-16 object-contain rounded-lg"
                 />
               </NavLink>
               <NavLink

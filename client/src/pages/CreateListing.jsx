@@ -164,7 +164,7 @@ function CreateListing() {
             type="text"
             placeholder="Description"
             id="description"
-            maxLength={62}
+            maxLength={100}
             minLength={10}
             required
           />
