@@ -100,7 +100,7 @@ function CreateListing() {
       setFormData({ ...formData, type: id });
     } else if (id === "furnished" || id === "parking" || id === "offer") {
       setFormData({ ...formData, [id]: !formData[id] });
-    } else if (id === "discountPrice" || id === "regularPrice") {
+    } else if (id === "discountPrice" || id === "regularPrice" || id === "bedrooms" || id === "bathrooms") {
       setFormData({ ...formData, [id]: Number(value) });
     } else {
       setFormData({ ...formData, [id]: value });
@@ -164,7 +164,7 @@ function CreateListing() {
             type="text"
             placeholder="Description"
             id="description"
-            maxLength={100}
+            maxLength={200}
             minLength={10}
             required
           />
