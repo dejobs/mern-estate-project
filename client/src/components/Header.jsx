@@ -1,12 +1,21 @@
 import { FaSearch } from "react-icons/fa";
-import { NavLink, useNavigate, useSearchParams } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { CiLight } from "react-icons/ci";
+import { MdDarkMode } from "react-icons/md";
 
 function Header() {
   const { currentUser } = useSelector((state) => state.user);
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false)
+
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark")
+  }, [darkMode])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,12 +34,12 @@ function Header() {
   }, [location.search]);
 
   return (
-    <header className="bg-slate-200 shadow-md">
+    <header className="bg-slate-200 shadow-md dark:bg-slate-700 ">
       <div className="flex justify-between items-center mx-auto p-3">
         <NavLink to="/">
           <h1 className="font-bold text-sm sm:text-xl flex flex-wrap">
-            <span className="text-slate-500">Fortitude</span>
-            <span className="text-slate-700">Estate</span>
+            <span className="text-slate-500 dark:text-white">Fortitude</span>
+            <span className="text-slate-700 dark:text-white">Estate</span>
           </h1>
         </NavLink>
         <form
@@ -49,13 +58,14 @@ function Header() {
           </button>
         </form>
         <ul className="flex gap-4">
+          <li className="self-center" onClick={() => setDarkMode(!darkMode) }>{darkMode ? <CiLight className="text-lg text-white" /> : <MdDarkMode className="text-lg" />}</li>
           <NavLink to="/">
-            <li className="hidden sm:inline text-slate-700 hover:underline ">
+            <li className="hidden sm:inline text-slate-700 dark:text-white hover:underline ">
               Home
             </li>
           </NavLink>
           <NavLink to="/about">
-            <li className="hidden sm:inline text-slate-700 hover:underline ">
+            <li className="hidden sm:inline text-slate-700 dark:text-white hover:underline ">
               About
             </li>
           </NavLink>
@@ -77,3 +87,5 @@ function Header() {
 }
 
 export default Header;
+
+// npm install @heroicons/react for

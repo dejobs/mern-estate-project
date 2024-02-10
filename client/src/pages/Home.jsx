@@ -13,7 +13,6 @@ export default function Home() {
   const [saleListings, setSaleListings] = useState([]);
   const [rentListings, setRentListings] = useState([]);
   SwiperCore.use([Navigation]);
-  console.log(offerListings);
 
   useEffect(() => {
     const fetchOfferListings = async () => {
@@ -54,18 +53,18 @@ export default function Home() {
       {/*top */}
 
       <div className="flex flex-col gap-6 py-28 px-3 max-w-6xl mx-auto">
-        <h1 className="text-slate-700 font-bold text-3xl lg:text-6xl">
-          Find your next <span className="text-slate-500">perfect</span>
+        <h1 className="text-slate-700 dark:text-white font-bold text-3xl lg:text-6xl">
+          Find your next <span className="text-slate-500 dark:text-slate-400">perfect</span>
           <br /> place with ease
         </h1>
-        <div className="text-gray-400 text-xs sm:text-sm">
+        <div className="text-gray-400 dark:text-white text-xs sm:text-sm">
           Fortitude Estate is the best place to find your next perfect place to
           live.
           <br /> We have a wide range of properties for you to choose from.
         </div>
         <Link
           to={"/search"}
-          className="text-blue-800 font-bold text-xs lg:text-sm hover:underline"
+          className="text-blue-800 dark:text-orange-400 font-bold text-xs lg:text-sm hover:underline"
         >
           Let's get started...
         </Link>
@@ -98,8 +97,8 @@ export default function Home() {
         {offerListings && offerListings.length > 0 && (
           <div className="">
             <div className="my-3">
-              <h2 className="text-2xl font-semibold text-slate-500">Recent offers</h2>
-              <Link to={"/search?offer=true"} className="text-sm font-semibold text-blue-800 hover:underline">Show more offers</Link>
+              <h2 className="text-2xl font-semibold text-slate-500 dark:text-white">Recent offers</h2>
+              <Link to={"/search?offer=true"} className="text-sm font-semibold text-blue-800 hover:underline dark:text-lime-300">Show more offers</Link>
             </div>
             <div className="flex gap-4 flex-wrap">
               {offerListings.map((listing) => (
@@ -112,8 +111,8 @@ export default function Home() {
         {saleListings && saleListings.length > 0 && (
           <div className="">
             <div className="my-3">
-              <h2 className="text-2xl font-semibold text-slate-500">Recent places for sale</h2>
-              <Link to={"/search?type=sell"} className="text-sm font-semibold text-blue-800 hover:underline">Show more offers</Link>
+              <h2 className="text-2xl font-semibold text-slate-500 dark:text-white">Recent places for sale</h2>
+              <Link to={"/search?type=sell"} className="text-sm font-semibold text-blue-800 dark:text-lime-300 hover:underline">Show more offers</Link>
             </div>
             <div className="flex gap-4 flex-wrap">
               {saleListings.map((listing) => (
@@ -126,8 +125,8 @@ export default function Home() {
         {rentListings && rentListings.length > 0 && (
           <div className="">
             <div className="my-3">
-              <h2 className="text-2xl font-semibold text-slate-500" >Recent places for rent</h2>
-              <Link to={"/search?type=rent"} className="text-sm font-semibold text-blue-800 hover:underline">Show more offers</Link>
+              <h2 className="text-2xl font-semibold text-slate-500 dark:text-white" >Recent places for rent</h2>
+              <Link to={"/search?type=rent"} className="text-sm font-semibold text-blue-800 hover:underline dark:text-lime-300">Show more offers</Link>
             </div>
             <div className="flex gap-4 flex-wrap ">
               {rentListings.map((listing) => (

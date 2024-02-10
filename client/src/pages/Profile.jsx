@@ -25,6 +25,8 @@ import {
 } from "firebase/storage";
 import { app } from "../firebase";
 import { Link, NavLink } from "react-router-dom";
+import { GoSignOut } from "react-icons/go";
+import { TiUserDeleteOutline } from "react-icons/ti";
 
 export default function Profile() {
   const { currentUser, loading, error } = useSelector((state) => state.user);
@@ -171,7 +173,7 @@ export default function Profile() {
 
   return (
     <div className="max-w-lg mx-auto p-3">
-      <h1 className="text-3xl font-semibold text-center my-7">Profile</h1>
+      <h1 className="text-3xl font-semibold text-center my-7 dark:text-white">Profile</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4 ">
         <input
           onChange={(e) => setFile(e.target.files[0])}
@@ -184,7 +186,7 @@ export default function Profile() {
           onClick={() => fileRef.current.click()}
           src={formData.avatar || currentUser.avatar}
           alt="profile"
-          className="rounded-full h-24 w-24 object-cover cursor-pointer self-center"
+          className="rounded-full h-24 w-24 object-cover cursor-pointer self-center dark:border dark:border-slate-500"
         />
         <p className="text-sm self-center">
           {fileUploadError ? (
@@ -228,7 +230,7 @@ export default function Profile() {
         <button
           disabled={loading}
           className="bg-slate-700 text-white rounded-lg p-3 
-        uppercase hover:opacity-95 disabled:opacity-80 "
+        uppercase hover:opacity-95 disabled:opacity-80 disabled:cursor-not-allowed dark:text-white dark:bg-sky-500"
         >
           {loading ? "loading..." : "update"}
         </button>
@@ -243,15 +245,15 @@ export default function Profile() {
       <div className="flex justify-between mt-5">
         <span
           onClick={handleDeleteUser}
-          className="text-red-700 cursor-pointer"
+          className="flex items-center gap-1 font-semibold text-red-700 cursor-pointer dark:text-white"
         >
-          Delete
+          Delete <TiUserDeleteOutline className="text-base" />
         </span>
         <span
           onClick={handleUserSignout}
-          className="text-red-700 cursor-pointer"
+          className="flex items-center gap-1 font-semibold text-red-700 cursor-pointer dark:text-white"
         >
-          Sign out
+          Sign out <GoSignOut className="text-xs" />
         </span>
       </div>
       <p className="text-red-700 mt-5">{error && error}</p>
@@ -261,7 +263,7 @@ export default function Profile() {
       <button
         disabled={loading}
         onClick={handleShowListngs}
-        className="text-green-700 w-full"
+        className="text-green-700 dark:font-semibold dark:text-green-400 w-full"
       >
         {loading ? "Loading Listings..." : "Show Listings"}
       </button>
@@ -269,11 +271,11 @@ export default function Profile() {
 
       {userListings && userListings.length > 0 && (
         <div className="flex flex-col gap-4">
-          <h1 className="font-semibold text-center text-2xl">Your Listings</h1>
+          <h1 className="font-semibold text-center text-2xl dark:text-slate-200">Your Listings</h1>
           {userListings.map((listing, index) => (
             <div
               key={listing._id}
-              className="flex flex-row gap-3 flex-wrap justify-between items-center  p-3 border rounded-lg"
+              className="flex flex-row gap-3 flex-wrap justify-between items-center  p-3 border rounded-lg dark:bg-gray-300"
             >
               <NavLink to={`/listing/${listing._id}`}>
                 <img

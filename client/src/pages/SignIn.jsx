@@ -46,7 +46,7 @@ export default function SignUp() {
 
   return (
     <div className="p-3 max-w-lg mx-auto">
-      <h1 className="text-3xl text-center font-semibold my-7 ">Sign In</h1>
+      <h1 className="text-3xl text-center font-semibold my-7 dark:text-white ">Sign In</h1>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <input
           type="email"
@@ -66,7 +66,7 @@ export default function SignUp() {
         />
         <button disabled={loading}
           className="bg-slate-700 text-white p-3 rounded-lg
-         uppercase hover:opacity-95 disabled:opacity-80"
+         uppercase hover:opacity-95 disabled:opacity-80 dark:bg-sky-500"
         >
          {loading ? "loading" :  "Sign in"}
         </button>
@@ -75,7 +75,7 @@ export default function SignUp() {
       <div className="flex gap-2 mt-5">
         <p>Don't have an account?</p>
         <Link to="/sign-up"  >
-          <span className="text-blue-700">Sign Up</span>
+          <span className="text-blue-700 dark:text-white">Sign Up</span>
         </Link>
       </div>
       <div>

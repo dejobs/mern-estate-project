@@ -114,7 +114,7 @@ export default function () {
         <form onSubmit={handleSubmit} className="flex flex-col gap-8">
           <div className="flex items-center gap-2">
             <label
-              className="whitespace-nowrap font-semibold"
+              className="whitespace-nowrap font-semibold dark:text-white"
               htmlFor="searchTerm"
             >
               Search Term:
@@ -129,7 +129,7 @@ export default function () {
             />
           </div>
           <div className="flex gap-2 items-center flex-wrap">
-            <label className="font-semibold">Type:</label>
+            <label className="font-semibold dark:text-white">Type:</label>
             <div className="flex gap-2 items-center">
               <input
                 type="checkbox"
@@ -138,7 +138,7 @@ export default function () {
                 onChange={handleChange}
                 checked={sidebarData.type === "all"}
               />
-              <span>Rent & Sale</span>
+              <span className="dark:text-white">Rent & Sale</span>
             </div>
             <div className="flex gap-2 items-center">
               <input
@@ -148,7 +148,7 @@ export default function () {
                 onChange={handleChange}
                 checked={sidebarData.type === "rent"}
               />
-              <span>Rent</span>
+              <span className="dark:text-white">Rent</span>
             </div>
             <div className="flex gap-2 items-center">
               <input
@@ -158,7 +158,7 @@ export default function () {
                 onChange={handleChange}
                 checked={sidebarData.type === "sell"}
               />
-              <span>Sale</span>
+              <span className="dark:text-white">Sale</span>
             </div>
             <div className="flex gap-2 items-center">
               <input
@@ -168,11 +168,11 @@ export default function () {
                 onChange={handleChange}
                 checked={sidebarData.offer}
               />
-              <span>Offer</span>
+              <span className="dark:text-white">Offer</span>
             </div>
           </div>
           <div className="flex gap-2 items-center flex-wrap">
-            <label className="font-semibold">Amenities:</label>
+            <label className="font-semibold dark:text-white">Amenities:</label>
             <div className="flex gap-2 items-center">
               <input
                 type="checkbox"
@@ -181,7 +181,7 @@ export default function () {
                 onChange={handleChange}
                 checked={sidebarData.parking}
               />
-              <span>Parking</span>
+              <span className="dark:text-white">Parking</span>
             </div>
             <div className="flex gap-2 items-center">
               <input
@@ -191,11 +191,11 @@ export default function () {
                 onChange={handleChange}
                 checked={sidebarData.furnished}
               />
-              <span>Furnished</span>
+              <span className="dark:text-white">Furnished</span>
             </div>
           </div>
           <div className="flex items-center gap-2 ">
-            <label className="font-semibold">Sort:</label>
+            <label className="font-semibold dark:text-white">Sort:</label>
             <select
               id="sort_order"
               className="border rounded-lg p-3"
@@ -208,13 +208,13 @@ export default function () {
               <option value="createdAt_asc">Oldest</option>
             </select>
           </div>
-          <button className="bg-slate-700 text-white border rounded-lg uppercase p-3">
+          <button className="bg-slate-700 text-white border rounded-lg uppercase p-3 dark:bg-slate-400">
             search
           </button>
         </form>
       </div>
       <div className="flex-1">
-        <h1 className="text-3xl font-semibold border-b p-3 mt-6 text-slate-700">
+        <h1 className="text-3xl font-semibold border-b p-3 mt-6 text-slate-700 dark:text-white">
           Listing results
         </h1>
         <div className="p-7 flex gap-4 flex-wrap">
@@ -228,7 +228,7 @@ export default function () {
             ))}
         </div>
         {showMore && (
-          <button className="text-green-700 font-semibold p-7 hover:underline w-full text-center"
+          <button className="text-green-700 font-semibold p-7 hover:underline w-full text-center dark:text-green-400"
           onClick={onShowMoreClick}>Show more</button>
         )}
       </div>

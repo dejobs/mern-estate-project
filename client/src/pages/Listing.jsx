@@ -88,15 +88,15 @@ export default function Listing() {
             </p>
           )}
           <div className="flex flex-col max-w-4xl mx-auto p-3 my-7 gap-4">
-            <p className="text-2xl font-semibold mb-6">
+            <p className="text-2xl font-semibold mb-6 dark:text-slate-300">
               {listing.name} - ${" "}
               {listing.offer
                 ? listing.discountPrice.toLocaleString("en-US")
                 : listing.regularPrice.toLocaleString("en-US")}
               {listing.type === "rent" && " / month"}
             </p>
-            <p className="flex items-center gap-2 text-slate-600  text-sm">
-              <FaMapMarkerAlt className="text-green-700" />
+            <p className="flex items-center gap-2 text-slate-600  text-sm dark:text-slate-300">
+              <FaMapMarkerAlt className="text-green-500" />
               {listing.address}
             </p>
             <div className="flex gap-4 ">
@@ -109,11 +109,11 @@ export default function Listing() {
                 </p>
               )}
             </div>
-            <p className="text-slate-800">
-              <span className="font-semibold text-black">Description - </span>
+            <p className="text-slate-800 dark:text-slate-200">
+              <span className="font-semibold text-black dark:text-slate-300">Description - </span>
               {listing.description}
             </p>
-            <ul className="text-green-900 font-semibold text-sm flex flex-wrap items-center gap-4 sm:gap-6">
+            <ul className="text-green-900 dark:text-green-400 font-semibold text-sm flex flex-wrap items-center gap-4 sm:gap-6">
               <li className="flex items-center gap-1 whitespace-nowrap ">
                 <FaBed className="text-lg" />
                 {listing.bedrooms > 1
@@ -136,7 +136,7 @@ export default function Listing() {
               </li>
             </ul>
             {currentUser && listing.userRef !== currentUser._id && !contact && (
-              <button onClick={() => setContact(true)} className="bg-slate-700 text-white uppercase p-3 rounded-lg hover:opacity-95">
+              <button onClick={() => setContact(true)} className="bg-slate-700 dark:bg-slate-200 text-white dark:text-black uppercase p-3 rounded-lg hover:opacity-95">
                 contact landlord
               </button>
             )}

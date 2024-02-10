@@ -138,7 +138,7 @@ function CreateListing() {
 
   return (
     <main className="p-3 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-semibold text-center my-7">
+      <h1 className="text-3xl dark:text-white font-semibold text-center my-7">
         Create a listing
       </h1>
       <form
@@ -188,7 +188,7 @@ function CreateListing() {
                 type="checkbox"
                 id="sell"
               />
-              <label htmlFor="sell">Sell</label>
+              <label htmlFor="sell" className="dark:text-white">Sell</label>
             </div>
             <div className="flex gap-2">
               <input
@@ -198,7 +198,7 @@ function CreateListing() {
                 type="checkbox"
                 id="rent"
               />
-              <label htmlFor="rent">Rent</label>
+              <label htmlFor="rent" className="dark:text-white">Rent</label>
             </div>
             <div className="flex gap-2">
               <input
@@ -208,7 +208,7 @@ function CreateListing() {
                 type="checkbox"
                 id="parking"
               />
-              <label htmlFor="parking">Parking spot</label>
+              <label htmlFor="parking" className="dark:text-white">Parking spot</label>
             </div>
             <div className="flex gap-2">
               <input
@@ -218,7 +218,7 @@ function CreateListing() {
                 type="checkbox"
                 id="furnished"
               />
-              <label htmlFor="furnished">Furnished</label>
+              <label htmlFor="furnished" className="dark:text-white">Furnished</label>
             </div>
             <div className="flex gap-2">
               <input
@@ -228,7 +228,7 @@ function CreateListing() {
                 type="checkbox"
                 id="offer"
               />
-              <label htmlFor="offer">Offer</label>
+              <label htmlFor="offer" className="dark:text-white">Offer</label>
             </div>
           </div>
           <div className="flex gap-6 flex-wrap">
@@ -243,7 +243,7 @@ function CreateListing() {
                 required
                 className="p-3 border rounded-lg border-grey-300"
               />
-              <label htmlFor="bedrooms">Bedrooms</label>
+              <label htmlFor="bedrooms" className="dark:text-white">Bedrooms</label>
             </div>
             <div className="flex items-center gap-2">
               <input
@@ -256,7 +256,7 @@ function CreateListing() {
                 required
                 className="p-3 border rounded-lg border-grey-300"
               />
-              <label htmlFor="bathrooms">Baths</label>
+              <label htmlFor="bathrooms" className="dark:text-white">Baths</label>
             </div>
             <div className="flex items-center gap-2">
               <input
@@ -270,7 +270,7 @@ function CreateListing() {
                 className="p-3 border rounded-lg border-grey-300"
               />
               <label
-                className="flex flex-col text-center"
+                className="flex flex-col text-center dark:text-white"
                 htmlFor="regularPrice"
               >
                 <span>Regular Price </span>
@@ -290,7 +290,7 @@ function CreateListing() {
                   className="p-3 border rounded-lg border-grey-300"
                 />
                 <label
-                  className="flex flex-col text-center"
+                  className="flex flex-col text-center dark:text-white"
                   htmlFor="discountPrice"
                 >
                   <span>discount Price </span>
@@ -301,16 +301,16 @@ function CreateListing() {
           </div>
         </div>
         <div className="flex flex-col flex-1 gap-4">
-          <p className="font-semibold">
+          <p className="font-semibold dark:text-white">
             Images:
-            <span className="font-normal text-gray-600 ml-2">
+            <span className="font-normal text-gray-600 dark:text-white ml-2">
               The first image will be the cover (max 6)
             </span>
           </p>
           <div className="flex gap-4">
             <input
               onChange={(e) => setFiles(e.target.files)}
-              className="p-3 border border-gray-300 rounded w-full "
+              className="p-3 border border-gray-300 rounded w-full dark:text-white "
               type="file"
               id="images"
               accept="image/*"
@@ -320,7 +320,7 @@ function CreateListing() {
               disabled={uploading}
               type="button"
               onClick={handleImageSubmit}
-              className="border rounded border-green-700 p-3 text-green-700 uppercase hover:shadow-lg disabled:opacity-80"
+              className="border rounded border-green-900 p-3 text-green-700 uppercase hover:shadow-lg disabled:opacity-80 dark:bg-green-500 dark:text-white"
             >
               {uploading ? "uploading..." : "upload"}
             </button>
