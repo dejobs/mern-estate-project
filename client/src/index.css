@@ -3,9 +3,28 @@
 @tailwind utilities;
 
 body {
-    background-color: rgb(241, 245, 241);
+  background-color: rgb(241, 245, 241);
 }
 
 html.dark body {
-    @apply bg-slate-700
+  @apply bg-slate-700;
+}
+
+.hideMenuNav {
+  display: none;
+}
+
+.showMenuNav {
+ 
+  position: absolute;
+  width: 200px;
+  height: 300px;
+  top: 0;
+  right: 0 ;
+  background: slategray;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }

@@ -4,18 +4,19 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { CiLight } from "react-icons/ci";
 import { MdDarkMode } from "react-icons/md";
+import { Bars3BottomRightIcon, XMarkIcon } from "@heroicons/react/24/solid";
 
 function Header() {
   const { currentUser } = useSelector((state) => state.user);
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false)
+  const [isNavOpen, setIsNavOpen] = useState(false);
 
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
-    document.documentElement.classList.toggle("dark")
-  }, [darkMode])
+    document.documentElement.classList.toggle("dark");
+  }, [darkMode]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -57,8 +58,60 @@ function Header() {
             <FaSearch className="text-slate-600" />
           </button>
         </form>
-        <ul className="flex gap-4">
-          <li className="self-center" onClick={() => setDarkMode(!darkMode) }>{darkMode ? <CiLight className="text-lg text-white" /> : <MdDarkMode className="text-lg" />}</li>
+        <nav className="MOBILE-MENU ">
+          <section className="MOBILE-MENU sm:hidden">
+            <div
+              onClick={() => setIsNavOpen((prev) => !prev)} // toggle isNavOpen state on click
+            >
+            <Bars3BottomRightIcon className="size-7 dark:text-slate-400" />
+            </div>
+            <div className={isNavOpen ? "showMenuNav" : "hideMenuNav"}>
+              <div
+                className="CROSS-ICON absolute top-0 right-0 px-8 py-8"
+                onClick={() => setIsNavOpen(false)}
+              >
+                <XMarkIcon className="size-7 dark:text-slate-400" />
+              </div>
+              <ul className="MENU-LINK-MOBILE-OPEN flex flex-col gap-2 items-center justify-between min-h-[250px]">
+                <NavLink to="/">
+                  <li className="text-slate-700 dark:text-white border-b border-gray-400  uppercase ">
+                    Home
+                  </li>
+                </NavLink>
+                <NavLink to="/about">
+                  <li className=" text-slate-700 dark:text-white  border-b border-gray-400 uppercase ">
+                    About
+                  </li>
+                </NavLink>
+                <NavLink to="/profile">
+                  {currentUser ? (
+                    <img
+                      className="rounded-full h-7 w-7 object-cover border-b border-gray-400  "
+                      src={currentUser.avatar}
+                      alt="profile"
+                    />
+                  ) : (
+                    <li className="text-slate-700 dark:text-white  border-b border-gray-400  uppercase  ">
+                      Sign in
+                    </li>
+                  )}
+                </NavLink>
+              </ul>
+            </div>
+          </section>
+        </nav>
+        <ul className="DESKTOP-MENU  gap-4 hidden sm:flex">
+          <li
+            className="self-center"
+            onClick={() => setDarkMode((prev) => !prev)}
+          >
+            {darkMode ? (
+              <CiLight className="text-lg text-white" />
+            ) : (
+              <MdDarkMode className="text-lg" />
+            )}
+          </li>
+
           <NavLink to="/">
             <li className="hidden sm:inline text-slate-700 dark:text-white hover:underline ">
               Home
@@ -72,12 +125,14 @@ function Header() {
           <NavLink to="/profile">
             {currentUser ? (
               <img
-                className="rounded-full h-7 w-7 object-cover"
+                className="rounded-full h-7 w-7 object-cover hidden sm:inline"
                 src={currentUser.avatar}
                 alt="profile"
               />
             ) : (
-              <li className="text-slate-700 hover:underline ">Sign in</li>
+              <li className="text-slate-700 hover:underline hidden sm:inline ">
+                Sign in
+              </li>
             )}
           </NavLink>
         </ul>
