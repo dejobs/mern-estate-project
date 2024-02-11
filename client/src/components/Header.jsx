@@ -63,16 +63,11 @@ function Header() {
             <div
               onClick={() => setIsNavOpen((prev) => !prev)} // toggle isNavOpen state on click
             >
-            <Bars3BottomRightIcon className="size-7 dark:text-slate-400" />
+            {isNavOpen ? <XMarkIcon className="size-7 dark:text-slate-400" /> : <Bars3BottomRightIcon className="size-7 dark:text-slate-400" />}
             </div>
-            <div className={isNavOpen ? "showMenuNav" : "hideMenuNav"}>
-              <div
-                className="CROSS-ICON absolute top-0 right-0 px-8 py-8"
-                onClick={() => setIsNavOpen(false)}
-              >
-                <XMarkIcon className="size-7 dark:text-slate-400" />
-              </div>
-              <ul className="MENU-LINK-MOBILE-OPEN flex flex-col gap-2 items-center justify-between min-h-[250px]">
+            <div className={` ${isNavOpen ? "showMenuNav" : "hideMenuNav"}`}>
+
+              <ul className="MENU-LINK-MOBILE-OPEN flex flex-col gap-2  justify-between min-h-[200px]">
                 <NavLink to="/">
                   <li className="text-slate-700 dark:text-white border-b border-gray-400  uppercase ">
                     Home
