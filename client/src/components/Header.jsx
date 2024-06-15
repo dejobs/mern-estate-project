@@ -38,7 +38,7 @@ function Header() {
 
   return (
     <header className="bg-slate-200 shadow-md dark:bg-slate-700 ">
-      <Navbar className="bg-transparent ">
+      <Navbar fluid className="bg-transparent ">
         <Navbar.Brand>
           <Link to="/">
             <h1 className="font-bold text-sm sm:text-xl flex flex-wrap">
@@ -70,7 +70,7 @@ function Header() {
           {darkMode ? (
             <CiLight className="text-lg text-white" />
           ) : (
-            <MdDarkMode className="text-lg" />
+            <MdDarkMode className="text-base" />
           )}
         </button>
 
@@ -90,7 +90,7 @@ function Header() {
             <>
               <Navbar.Link active={path === "/"} className="">
                 <Link to="/" className=" text-slate-700 dark:text-white  ">
-                  <span className="text-lg">Home</span>
+                  <span className="text-base">Home</span>
                 </Link>
               </Navbar.Link>
               <Navbar.Link active={path === "/about"}>
@@ -98,7 +98,7 @@ function Header() {
                   to="/about"
                   className=" text-slate-700 dark:text-white align-middle"
                 >
-                  <span className="text-lg">About</span>
+                  <span className="text-base">About</span>
                 </Link>
               </Navbar.Link>
             </>
@@ -119,7 +119,7 @@ function Header() {
           ) : (
             <Navbar.Link active={path === "/sign-in"}>
               <Link to="/sign-in" className=" text-slate-700 dark:text-white ">
-                <span className="text-lg"> Sign In</span>
+                <span className="text-base"> Sign In</span>
               </Link>
             </Navbar.Link>
           )}
